@@ -6,12 +6,43 @@ import { Button, FormGroup, FormControl, ControlLabel, Form } from "react-bootst
 
 class login extends Component {
 
-  onClickSignup = () => {
-  
-  }
+  onClickLogin = ( logsin ) => {
 
-  onClickLogin = () => {
+      var username = document.getElementById("usernameID").value
 
+      var obj = JSON.stringify({
+          "username": username,
+          "password": document.getElementById("passwordID").value
+      })
+
+      document.getElementById("usernameID").value = ""
+      document.getElementById("passwordID").value = ""
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/api/" + logsin, true);
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.onreadystatechange = function ()
+      {
+          if ( this.readyState === 4 && this.status === 200 )
+          {
+
+              var response = JSON.parse(this.responseText);
+              console.log(response);
+
+              if ( response.status === "okay" )
+              {
+                  localStorage.token = response.token;
+                  localStorage.account = username;
+
+                  window.location.replace("/chat/main")
+              }
+              else if ( response.status === "fail" )
+              {
+                  alert( response.reason )
+              }
+          }
+      };
+      xhttp.send(obj);
   }
 
   render() {
@@ -21,7 +52,7 @@ class login extends Component {
 
         <Form.Group className="usernameForm">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="username" placeholder="Enter username" id="usernameID"/> 
+          <Form.Control type="text" placeholder="Enter username" id="usernameID"/>
         </Form.Group>
 
         <Form.Group className="usernameForm">
@@ -29,15 +60,13 @@ class login extends Component {
           <Form.Control type="password" placeholder="Password" id="passwordID" />
         </Form.Group>
 
-        
-        <Button className="button" onClick={() => this.onClickSignup()} id="signupButton" type="submit">Sign-Up</Button>
-        <Button className="button" onClick={() => this.onClickLogin()} id="loginButton" type="submit">Log-In</Button>
+        <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="submit">Sign-Up</Button>
+        <Button className="button" onClick={() => this.onClickLogin("login")} id="loginButton" type="submit">Log-In</Button>
 
       </Form>
     </div>
    );
   }
-  
 }
 
 export default login;
