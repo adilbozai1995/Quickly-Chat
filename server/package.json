@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://gitlab.com/Quantx/quickly-chat/issues"
   },
-  "homepage": "https://gitlab.com/Quantx/quickly-chat#README"
+  "homepage": "https://gitlab.com/Quantx/quickly-chat#README",
+  "dependencies": {
+    "express": "^4.16.4",
+    "is-uuid": "^1.0.2",
+    "mysql": "^2.17.1",
+    "uuid": "^3.3.2"
+  }
 }

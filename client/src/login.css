@@ -87,11 +87,13 @@
 }
 
 .error {
+  position: relative;
   margin-top: 10%;
-  margin-right: 19%;
+  margin-right: 25%;
   border-radius: 70%;
-  background-image: linear-gradient(to bottom,#855843 0,#665d40 ,0);
+  font-family: bold;
+  font-size: 200%;
   color: white;
-  margin-left: 17%;
+  margin-left: 41%;
   height: 15%
 }
