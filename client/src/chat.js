@@ -4,12 +4,13 @@ import './chat.css';
 class chat extends Component {
 
 
-  sendClicked(){
-
+  sendClicked()
+  {
 
   }
 
-  jumpEndClicked(){
+  jumpEndClicked()
+  {
 
   }
 
@@ -21,8 +22,14 @@ class chat extends Component {
       window.location.replace( "/" )
   }
 
-  joinRoomClicked(){
+  joinRoomClicked()
+  {
+      var room = document.getElementById("roomnameID").value;
+      document.getElementById("roomnameID").value = "";
 
+      room = room.replace(/\W/g, '')
+
+      window.location.replace( "/chat/" + room )
   }
 
   componentDidMount()
@@ -42,7 +49,7 @@ class chat extends Component {
         <button onClick={() => this.jumpEndClicked()} className = "jump_end">END</button>
         <button onClick={() => this.joinRoomClicked()} className = "join_room_btn">JOIN ROOM</button>
         <button onClick={() => this.logoutClicked()} className = "logout_btn">logout</button>
-        <input className = "room_input" id = "user_message"/>
+        <input className="room_input" id="roomnameID"/>
         <div className = "input_holder">
         
         <div className = "chat_bubbles">
