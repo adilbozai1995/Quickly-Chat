@@ -1,6 +1,6 @@
 .Chat {
     height: 100vh;
-    background:url("http://mysite.example.com/mycursor.png");
+    background:url("https://wallpaperaccess.com/full/84248.png");
     position: relative;
     overflow: hidden;
     overflow-y: scroll;
@@ -82,11 +82,13 @@
     position: relative; 
     top: 2%;
     left: 2.5%;
+    overflow: auto;
     height: 75%;
     width: 95%;
+    border-color: white;
     background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
- 
- 
+    
+    border-width: 2px;
  }
 
  .chat_input{
@@ -122,6 +124,9 @@
     height: auto;
     width: auto;
     color: white;
+    font-style: "Palatine";
+    border-color: white;
+    border-radius: 10%;
     font-size: 140%;
     
  }

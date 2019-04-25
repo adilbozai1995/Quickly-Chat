@@ -208,7 +208,7 @@ class chat extends Component {
                         <span>{content.toString()}</span>
                        
                         <span className="time">{timestamp.toString()}</span>
-                        =
+                        
                     </div>
                 )
               })
