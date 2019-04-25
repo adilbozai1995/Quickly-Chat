@@ -13,7 +13,7 @@ ReactDOM.render(
 <BrowserRouter>
 <Switch>
     <div>
-      <Route exact path='/' component={chat}/>
+      <Route exact path='/' component={login}/>
       <Route exact path='/chat' component={chat}/>
     </div>
     </Switch>
