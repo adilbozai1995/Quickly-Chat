@@ -11,8 +11,8 @@
 
   .jump_end{
     position: absolute; 
-    top: 90%;
-    left: 78%;
+    top: 6.4%;
+    left: 31%;
     background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
     padding: 0.5% 0.6%;
     font-size: 140%;
@@ -20,8 +20,13 @@
     border-radius: 50%;
     border-color: black;
     font-family:'SignPainter';
-  
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
   }  
+  .jump_end:hover {
+    color: white;
+    }
 
   .join_room_btn{
     position: absolute; 
@@ -34,9 +39,13 @@
   border-radius: 50%;
   border-color: black;
   font-family:'SignPainter';
-   
- 
- }  
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }  
+  .join_room_btn:hover {
+    color: white;
+    }
 
 
  .room_input {
@@ -48,6 +57,18 @@
     margin-right: 14%;
     background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
  }  
+
+ .room_name{
+   position: absolute; 
+   font-family:'SignPainter';
+   font-size: 450%;
+   color: white;
+   font-variant-caps: all-petite-caps;
+   margin-top: 3%;
+   margin-left: 45%;
+   
+
+ }
 
  .time {
      float: right;
@@ -64,8 +85,13 @@
      border-radius: 50%;
      border-color: black;
      font-family:'SignPainter';
-  
-  } 
+     -webkit-transition-duration: 0.4s;
+     transition-duration: 0.4s;
+     cursor: pointer;
+   }  
+   .logout_btn:hover {
+     color: white;
+     }
 
 
 .input_holder{
@@ -79,15 +105,13 @@
 }
 
 .chat_bubbles{
-    position: relative; 
+    position: absolute; 
     top: 2%;
     left: 2.5%;
     overflow: auto;
     height: 75%;
     width: 95%;
     border-color: white;
-    background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
-    
     border-width: 2px;
  }
 
@@ -115,8 +139,13 @@
   border-radius: 50%;
   border-color: black;
   font-family:'SignPainter';
-
- }
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}  
+.chat_send:hover {
+  color: white;
+  }
 
  .chatBubble {
     margin-top: 1rem;
@@ -124,9 +153,7 @@
     height: auto;
     width: auto;
     color: white;
-    font-style: "Palatine";
-    border-color: white;
-    border-radius: 10%;
-    font-size: 140%;
-    
+    font-family: "monaco";
+
+    font-size: 110%;
  }
