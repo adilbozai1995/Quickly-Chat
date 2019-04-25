@@ -46,9 +46,12 @@
     margin-top: 4%;
     float: left;
     margin-right: 14%;
-    background:green;
+    background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
  }  
 
+ .time {
+     float: right;
+ }
 
   .logout_btn{
     position: relative; 
@@ -114,5 +117,11 @@
  }
 
  .chatBubble {
-    background:red;
+    margin-top: 1rem;
+    background-image: linear-gradient(to bottom,#1b589e 0,#2f3042 100%);
+    height: auto;
+    width: auto;
+    color: white;
+    font-size: 140%;
+    
  }
