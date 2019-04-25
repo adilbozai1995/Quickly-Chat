@@ -141,11 +141,11 @@ module.exports = (app) => {
                     else
                     {
                         var out = [];
-                        var last = -1;
+                        var last = 0;
 
                         for ( var i = 0; i < rsql.length; i++ )
                         {
-                            out.append({
+                            out.push({
                                 "author":rsql[i].author,
                                 "content":rsql[i].content,
                                 "born":rsql[i].born
