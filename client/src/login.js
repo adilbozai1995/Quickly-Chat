@@ -6,23 +6,66 @@ import { Button, FormGroup, FormControl, ControlLabel, Form } from "react-bootst
 
 class login extends Component {
 
-  onClickSignup = () => {
-  
+  onClickLogin = ( logsin ) => {
+
+      var username = document.getElementById("usernameID").value
+
+      var obj = JSON.stringify({
+          "username": username,
+          "password": document.getElementById("passwordID").value
+      })
+
+      document.getElementById("usernameID").value = ""
+      document.getElementById("passwordID").value = ""
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/api/" + logsin, true);
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.onreadystatechange = function ()
+      {
+          if ( this.readyState === 4 && this.status === 200 )
+          {
+
+              var response = JSON.parse(this.responseText);
+              console.log(response);
+
+              if ( response.status === "okay" )
+              {
+                  localStorage.token = response.token;
+                  localStorage.account = username;
+
+                  window.location.replace("/chat/main")
+              }
+              else if ( response.status === "fail" )
+              {
+                  document.getElementById("errorID").innerHTML = response.reason
+              }
+          }
+      };
+      xhttp.send(obj);
   }
 
-  onClickLogin = () => {
+  componentDidMount()
+  {
+      if ( !localStorage.account || !localStorage.token )
+      {
+          localStorage.account = "";
+          localStorage.token = "";
+          return;
+      }
 
+      window.location.replace("/chat/main")
   }
+
 
   render() {
    return (
-    <div className="login">
       <Form className="loginForm">
 
         <Form className="bigForm">
         <Form.Group className="usernameForm">
           <Form.Label>Username :</Form.Label>
-          <Form.Control type="username"  id="usernameID"/> 
+          <Form.Control type="text"  id="usernameID"/> 
         </Form.Group>
 
         <Form.Group className="usernameForm">
@@ -30,16 +73,15 @@ class login extends Component {
           <Form.Control type="password"  id="passwordID" />
         </Form.Group>
 
-        
-        <Button className="button" onClick={() => this.onClickSignup()} id="signupButton" type="submit">Sign-Up</Button>
-        <Button className="button" onClick={() => this.onClickLogin()} id="loginButton" type="submit">Log-In</Button>
-        </Form>
+        <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="button">Sign-Up</Button>
+        <Button className="button" onClick={() => this.onClickLogin("login")}  id="loginButton"  type="button">Log-In</Button>
+
+        <div id="errorID"></div>
 
       </Form>
-    </div>
+    </Form>
    );
   }
-  
 }
 
 export default login;
