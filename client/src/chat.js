@@ -63,7 +63,7 @@ class chat extends Component {
 
   jumpEndClicked()
   {
-      var scroller = document.getElementById("replaceMeLater")
+      var scroller = document.getElementById("chatdivID")
       scroller.scrollTop = scroller.scrollHeight;
   }
 
@@ -170,7 +170,18 @@ class chat extends Component {
               }
               else if ( response.status === "fail" )
               {
-                  if ( response.reason !== "no new posts" ) console.log(response)
+                  if ( response.reason === "invalid security token"
+                  ||   response.reason === "no account with that username" )
+                  {
+                      localStorage.account = "";
+                      localStorage.token = "";
+
+                      window.location.replace("/")
+                  }
+                  else if ( response.reason !== "no new posts" )
+                  {
+                      console.log(response)
+                  }
               }
           }
       };
@@ -186,8 +197,7 @@ class chat extends Component {
         <input className="room_input" id="roomnameID"/>
         <div className = "input_holder">
         
-        <div className = "chat_bubbles">
-        
+        <div className = "chat_bubbles" id="chatdivID">
         {
                 // Iterates over each element in the blocks array in the state and makes a span
               this.state.bubbles.map(({author, content, timestamp})=>{
