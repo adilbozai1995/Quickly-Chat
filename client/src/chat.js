@@ -14,12 +14,59 @@ class chat extends Component {
 
   sendClicked()
   {
+      if ( !localStorage.account || !localStorage.token )
+      {
+          localStorage.account = "";
+          localStorage.token = "";
 
+          window.location.replace("/")
+          return;
+      }
+
+      const content = document.getElementById("messageID").value;
+      document.getElementById("messageID").value = "";
+
+      if ( !content ) return;
+
+
+      const room = this.props.match.params.room
+
+      if ( room == null || room.length > 50 ) return;
+
+      var obj = JSON.stringify({
+          "username": localStorage.account,
+          "token": localStorage.token,
+          "content": content,
+          "room": room
+      })
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/api/post", true);
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.onreadystatechange = function ()
+      {
+          if ( this.readyState === 4 && this.status === 200 )
+          {
+              var response = JSON.parse(this.responseText);
+              console.log(response)
+
+              if ( response.status === "okay" )
+              {
+
+              }
+              else if ( response.status === "fail" )
+              {
+
+              }
+          }
+      };
+      xhttp.send(obj);
   }
 
   jumpEndClicked()
   {
-
+      var scroller = document.getElementById("replaceMeLater")
+      scroller.scrollTop = scroller.scrollHeight;
   }
 
   logoutClicked()
@@ -37,7 +84,10 @@ class chat extends Component {
 
       room = room.replace(/\W/g, '')
 
-      window.location.replace( "/chat/" + room )
+      if ( room.length <= 50 ) // Make sure this is a valid room name
+      {
+          window.location.replace( "/chat/" + room )
+      }
   }
 
   componentDidMount()
@@ -49,6 +99,72 @@ class chat extends Component {
 
           window.location.replace("/")
       }
+      else
+      {
+          this.fetchInverval = setInterval( this.fetchLoop, 1000, this.props.match.params.room );
+      }
+  }
+
+  componentWillUnmount()
+  {
+      clearInterval( this.fetchInterval )
+  }
+
+  fetchLoop( room )
+  {
+      // Abort loop
+      if ( !window.location.pathname.startsWith( "/chat/" ) ) return;
+
+      // Make sure we're still logged in
+      if ( !localStorage.account || !localStorage.token )
+      {
+          localStorage.account = "";
+          localStorage.token = "";
+
+          window.location.replace("/")
+          return;
+      }
+
+      if ( room == null || room.length > 50 ) return;
+
+      // Setup starting value
+      if ( this.lastMessage == null ) this.lastMessage = -1;
+
+      var obj = JSON.stringify({
+          "username": localStorage.account,
+          "token": localStorage.token,
+          "last": this.lastMessage,
+          "room": room
+      })
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/api/fetch", true);
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.onreadystatechange = function ()
+      {
+          if ( this.readyState === 4 && this.status === 200 )
+          {
+
+              var response = JSON.parse(this.responseText);
+
+              if ( response.status === "okay" )
+              {
+
+                  for ( var i = 0; i < response.posts.length; i++ )
+                  {
+                      const post = response.posts[i]
+                  }
+
+                  // Update last message
+                  this.lastMessage = response.last
+              }
+              else if ( response.status === "fail" )
+              {
+                  if ( response.reason !== "no new posts" ) console.log(response)
+              }
+          }
+      };
+      xhttp.send(obj);
   }
 
   //Add things dynamically
@@ -59,9 +175,9 @@ class chat extends Component {
     render() {
      return (
        <div className="Chat">
-        <button onClick={() => this.jumpEndClicked()} className = "jump_end">END</button>
-        <button onClick={() => this.joinRoomClicked()} className = "join_room_btn">JOIN ROOM</button>
-        <button onClick={() => this.logoutClicked()} className = "logout_btn">logout</button>
+        <button onClick={() => this.jumpEndClicked()} className = "jump_end">View Most Recent</button>
+        <button onClick={() => this.joinRoomClicked()} className = "join_room_btn">Join Room</button>
+        <button onClick={() => this.logoutClicked()} className = "logout_btn">Logout</button>
         <input className="room_input" id="roomnameID"/>
         <div className = "input_holder">
         
@@ -89,8 +205,8 @@ class chat extends Component {
         
         </div>
         
-        <textarea className = "chat_input" id = "user_message"/>
-        <button onClick={() => this.sendClicked()} className = "chat_send">SEND</button>
+        <textarea className = "chat_input" id="messageID"/>
+        <button onClick={() => this.sendClicked()} className = "chat_send">Send Message</button>
         
         </div>
 

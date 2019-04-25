@@ -63,6 +63,8 @@ class login extends Component {
    return (
       <Form className="loginForm">
 
+        <label className = "logo">Quickfy</label>
+
         <Form className="bigForm">
         <Form.Group className="usernameForm">
           <Form.Label>Username :</Form.Label>
@@ -75,7 +77,7 @@ class login extends Component {
         </Form.Group>
 
         <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="button">Sign-Up</Button>
-        <Button className="button" onClick={() => this.onClickLogin("login")}  id="loginButton"  type="button">Log-In</Button>
+        <Button className="button2" onClick={() => this.onClickLogin("login")}  id="loginButton"  type="button">Log-In</Button>
 
 
       </Form>

@@ -30,7 +30,7 @@ module.exports = (app) => {
 
         if ( room.length >= 50 )
         {
-            console.log( "fetch: room too long: " + room )
+            console.log( "post: room too long: " + room )
             return res.sendStatus(400)
         }
 
@@ -79,6 +79,7 @@ module.exports = (app) => {
 
         const username = req.body.username
         const token = req.body.token
+        const room = req.body.room
 
         if ( username.length >= 50 )
         {
@@ -126,8 +127,6 @@ module.exports = (app) => {
             }
             else
             {
-                const rightnow = Date.now() / 1000;
-
                 sqlsec.query( "SELECT * FROM cs252posts WHERE id>? AND room=? ORDER BY id ASC;", [last, room], function( err, rsql )
                 {
                     if ( err )
@@ -141,7 +140,7 @@ module.exports = (app) => {
                     }
                     else
                     {
-                        var out = []
+                        var out = [];
                         var last = -1;
 
                         for ( var i = 0; i < rsql.length; i++ )
@@ -156,12 +155,9 @@ module.exports = (app) => {
                             if ( rsql[i].id > last ) last = rsql[i].id
                         }
 
-                        res.json({"status":"okay","last":last,"posts":out})
+                        res.json({"status":"okay", "last":last, "posts": out})
                     }
                 });
-
-                console.log( "fetch: messages fetched by user: " + username + ", from room: " + room )
-                res.json({"status":"okay"})
             }
         });
     });
