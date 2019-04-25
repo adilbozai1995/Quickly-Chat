@@ -51,10 +51,11 @@ class login extends Component {
       {
           localStorage.account = "";
           localStorage.token = "";
-          return;
       }
-
-      window.location.replace("/chat/main")
+      else
+      {
+          window.location.replace("/chat/main")
+      }
   }
 
 
@@ -78,9 +79,9 @@ class login extends Component {
         <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="button">Sign-Up</Button>
         <Button className="button2" onClick={() => this.onClickLogin("login")}  id="loginButton"  type="button">Log-In</Button>
 
-        <div id="errorID"></div>
 
       </Form>
+      <Form className="error" id="errorID"></Form>
     </Form>
    );
   }
