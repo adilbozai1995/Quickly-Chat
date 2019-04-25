@@ -1,0 +1,16 @@
+Account security is taken very seriously by Quickly Chat. Passwords are hashed
+using sha512. Salts for those passwords are randomized per account using 32
+bytes of cryptographically random data. Once the password is confirmed to match
+a random 32 byte string is generated for use as an authentication token. For all
+further transactions, this token is used to verify the identity of the user.
+This ensures that their password is never stored in plaintext. The token is
+automatically regenerated on every login, this ensures that if an attacker is
+able to clone a token, then it will only last until the original user decides to
+login to back into their account.
+
+Messages are fetched from the backend ever second through the use of a polling
+method. This polling loop makes an AJAX request to the backend every second and
+the backend returns any new messages that have yet to be recieved by the client.
+Both posting and fetching messages requires a valid username and token pair.
+This ensures that all users of Quickly Chat have accounts, and ensures robust
+logging of all server transactions.
