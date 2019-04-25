@@ -49,6 +49,18 @@
     background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
  }  
 
+ .room_name{
+   position: absolute; 
+   font-family:'SignPainter';
+   font-size: 450%;
+   color: white;
+   font-variant-caps: all-petite-caps;
+   margin-top: 3%;
+   margin-left: 45%;
+   
+
+ }
+
  .time {
      float: right;
  }

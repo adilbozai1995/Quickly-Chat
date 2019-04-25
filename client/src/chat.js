@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './chat.css';
 
+
+
 class chat extends Component {
 
     constructor () {
@@ -9,6 +11,7 @@ class chat extends Component {
           bubbles:[]
         }
       }
+    
 
   sendClicked()
   {
@@ -182,16 +185,22 @@ class chat extends Component {
 
     render() {
      return (
+
        <div className="Chat">
+       <label className = "logo">Quickfy</label>
         <button onClick={() => this.jumpEndClicked()} className = "jump_end">View Most Recent</button>
         <button onClick={() => this.joinRoomClicked()} className = "join_room_btn">Join Room</button>
         <button onClick={() => this.logoutClicked()} className = "logout_btn">Logout</button>
+        <div className = "room_name">{this.props.match.params.room}</div>
         <input className="room_input" id="roomnameID"/>
         <div className = "input_holder">
+
+        
         
         <div className = "chat_bubbles" id="chatdivID">
         {
                 // Iterates over each element in the blocks array in the state and makes a span
+                
               this.state.bubbles.map(({author, content, timestamp})=>{
                 return (
                     <div className="chatBubble">
