@@ -76,9 +76,9 @@ class login extends Component {
         <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="button">Sign-Up</Button>
         <Button className="button" onClick={() => this.onClickLogin("login")}  id="loginButton"  type="button">Log-In</Button>
 
-        <div id="errorID"></div>
 
       </Form>
+      <Form className="error" id="errorID"></Form>
     </Form>
    );
   }

@@ -57,9 +57,18 @@
   margin-top: 15%;
   margin-right: 19%;
   background-image: linear-gradient(to bottom,#855843 0,#665d40 100%);
-  border-radius: 100%;
+  border-radius: 70%;
   margin-left: 17%;
-  height: 50%
+  height: 30%
   
 }
 
+.error {
+  margin-top: 10%;
+  margin-right: 19%;
+  border-radius: 70%;
+  background-image: linear-gradient(to bottom,#855843 0,#665d40 100%);
+  color: white;
+  margin-left: 17%;
+  height: 15%
+}
