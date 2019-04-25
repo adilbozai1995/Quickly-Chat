@@ -11,7 +11,8 @@ class chat extends Component {
 
   jumpEndClicked()
   {
-
+      var scroller = document.getElementById("replaceMeLater")
+      scroller.scrollTop = scroller.scrollHeight;
   }
 
   logoutClicked()
