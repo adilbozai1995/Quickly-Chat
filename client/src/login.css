@@ -9,24 +9,57 @@
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  
   
 }
 
 .button {
   background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
-  margin-right: 2rem;
   padding: 0.5% 0.6%;
-  font-size: 180%;
+  font-size: 230%;
   line-height: 1.3333333;
   border-radius: 50%;
   border-color: black;
   font-family:'SignPainter';
   font-weight: bold;
-
+  margin-top: 1%;
+  margin-left: 24%;  
 }
 
 .usernameForm {
+  margin-left: 32%;
+  margin-top: 1%;
+  font-family:'SignPainter';
+  font-weight: bold;
+  font-size: 280%;
+}
 
+.form-label {
+  margin-right: 3%;
+}
+
+.form-control {
+  width: 50%;
+  border-color: black;
+  background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
+  color: white;
+  display: block;
+  font-size: 40%;
+  font-family:'Palatine';
+  font-weight: bold;
+
+}
+
+
+
+.bigForm {
+  margin-top: 15%;
+  margin-right: 19%;
+  background-image: linear-gradient(to bottom,#855843 0,#665d40 100%);
+  border-radius: 100%;
+  margin-left: 17%;
+  height: 50%
+  
 }
 

@@ -19,19 +19,21 @@ class login extends Component {
     <div className="login">
       <Form className="loginForm">
 
+        <Form className="bigForm">
         <Form.Group className="usernameForm">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="username" placeholder="Enter username" id="usernameID"/> 
+          <Form.Label>Username :</Form.Label>
+          <Form.Control type="username"  id="usernameID"/> 
         </Form.Group>
 
         <Form.Group className="usernameForm">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" id="passwordID" />
+          <Form.Label>Password :</Form.Label>
+          <Form.Control type="password"  id="passwordID" />
         </Form.Group>
 
         
         <Button className="button" onClick={() => this.onClickSignup()} id="signupButton" type="submit">Sign-Up</Button>
         <Button className="button" onClick={() => this.onClickLogin()} id="loginButton" type="submit">Log-In</Button>
+        </Form>
 
       </Form>
     </div>
