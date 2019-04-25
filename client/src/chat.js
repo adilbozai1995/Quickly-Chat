@@ -152,16 +152,8 @@ class chat extends Component {
 
                   for ( var i = 0; i < response.posts.length; i++ )
                   {
-                      const post = response.posts[i]
-
-                      var updateVal = {
-                          "author":post.author,
-                          "content":post.content,
-                          "timestamp":post.born
-                      }
-
                       myScope.setState({
-                          "bubbles": myScope.state.bubbles.concat(updateVal)
+                          "bubbles": myScope.state.bubbles.concat(response.posts[i])
                       })
                   }
 

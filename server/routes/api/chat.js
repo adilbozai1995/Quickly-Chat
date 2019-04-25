@@ -145,10 +145,23 @@ module.exports = (app) => {
 
                         for ( var i = 0; i < rsql.length; i++ )
                         {
+                            var tmsp = new Date(rsql[i].born * 1000)
+
+                            var seconds = tmsp.getSeconds()
+                            if ( seconds < 10 ) seconds = "0" + seconds
+                            var minutes = tmsp.getMinutes()
+                            if ( minutes < 10 ) minutes = "0" + minutes
+                            var day = tmsp.getDate()
+                            if ( day < 10 ) day = "0" + day
+
+
+                            var stamp = tmsp.getHours() + ":" + minutes + ":" + seconds
+                            stamp += " - " + tmsp.getMonth() + "/" + day + "/" + tmsp.getFullYear()
+
                             out.push({
                                 "author":rsql[i].author,
                                 "content":rsql[i].content,
-                                "born":rsql[i].born
+                                "timestamp": stamp
                             })
 
                             // Get most recent post
