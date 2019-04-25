@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const mysql = require('mysql')
-const port = 3070
+const port = 8080
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 
     app._router.stack.forEach(function(r)
     {
-        if (r.route && r.route.path && r.route.path != "/") out += r.route.path$
+        if (r.route && r.route.path && r.route.path != "/") out += r.route.path + "<br>"
     });
 
     res.send( out )
