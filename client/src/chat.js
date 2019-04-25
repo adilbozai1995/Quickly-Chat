@@ -1,11 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './chat.css';
 
 class chat extends Component {
+
+
+  sendClicked(){
+
+    
+  }
     render() {
      return (
-       <div className="App">
+       <div className="Chat">
+
+        <div className = "input_holder">
+        
+        <div className = "chat_bubbles">
+        
+        
+        
+        
+        </div>
+        
+        <textarea className = "chat_input" id = "user_message"/>
+        <button OnClick={() => this.sendClicked()} className = "chat_send">SEND</button>
+        
+        </div>
+
+        
+
+
         
       </div>
      );
@@ -13,4 +36,4 @@ class chat extends Component {
     
   }
 
-export default App;
+export default chat;
