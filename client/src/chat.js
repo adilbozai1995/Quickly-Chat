@@ -1,11 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './chat.css';
 
 class chat extends Component {
     render() {
      return (
-       <div className="App">
+       <div className="Chat">
+
         
       </div>
      );
@@ -13,4 +13,4 @@ class chat extends Component {
     
   }
 
-export default App;
+export default chat;

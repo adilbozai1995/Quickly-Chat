@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import login from './login';
+import chat from './chat';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route,Switch} from 'react-router-dom';
 
@@ -12,8 +13,8 @@ ReactDOM.render(
 <BrowserRouter>
 <Switch>
     <div>
-      <Route exact path='/' component={login}/>
-
+      <Route exact path='/' component={chat}/>
+      <Route exact path='/chat' component={chat}/>
     </div>
     </Switch>
 </BrowserRouter>,
