@@ -33,7 +33,7 @@ module.exports = (app) => {
         const token = crypto.randomBytes(32).toString('hex');
 
         sqlsec.query( "INSERT INTO cs252users (username, password, salt, token) VALUES (?, ?, ?, ?);",
-        [ username, hashpass, salt, token ], function( err, rsql )
+        [ username, hashpass.toString('hex'), salt.toString('hex'), token ], function( err, rsql )
         {
             if ( err )
             {

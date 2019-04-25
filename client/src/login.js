@@ -38,12 +38,25 @@ class login extends Component {
               }
               else if ( response.status === "fail" )
               {
-                  alert( response.reason )
+                  document.getElementById("errorID").innerHTML = response.reason
               }
           }
       };
       xhttp.send(obj);
   }
+
+  componentDidMount()
+  {
+      if ( !localStorage.account || !localStorage.token )
+      {
+          localStorage.account = "";
+          localStorage.token = "";
+          return;
+      }
+
+      window.location.replace("/chat/main")
+  }
+
 
   render() {
    return (
@@ -60,8 +73,10 @@ class login extends Component {
           <Form.Control type="password" placeholder="Password" id="passwordID" />
         </Form.Group>
 
-        <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="submit">Sign-Up</Button>
-        <Button className="button" onClick={() => this.onClickLogin("login")} id="loginButton" type="submit">Log-In</Button>
+        <Button className="button" onClick={() => this.onClickLogin("signup")} id="signupButton" type="button">Sign-Up</Button>
+        <Button className="button" onClick={() => this.onClickLogin("login")}  id="loginButton"  type="button">Log-In</Button>
+
+        <div id="errorID"></div>
 
       </Form>
     </div>
