@@ -80,12 +80,7 @@
   opacity: 5%;
   margin-top: 15%;
   margin-right: 19%;
-<<<<<<< HEAD
   border-radius: 100%;
-=======
-  background-image: linear-gradient(to bottom,#855843 0,#665d40 100%);
-  border-radius: 70%;
->>>>>>> b3269d12f8b9cf00b43b63d3ff5057e13962b893
   margin-left: 17%;
   height: 30%
   
@@ -95,7 +90,7 @@
   margin-top: 10%;
   margin-right: 19%;
   border-radius: 70%;
-  background-image: linear-gradient(to bottom,#855843 0,#665d40 100%);
+  background-image: linear-gradient(to bottom,#855843 0,#665d40 ,0);
   color: white;
   margin-left: 17%;
   height: 15%
