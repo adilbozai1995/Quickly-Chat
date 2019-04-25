@@ -19,3 +19,8 @@ app.get('/', function (req, res) {
 
     res.send( out )
 });
+
+app.listen(port, (err) => {
+    if ( err ) { console.log( err ); };
+    console.log(`Quickly Chat backend server listening on port ${port}!`);
+});
