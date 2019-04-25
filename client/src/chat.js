@@ -6,9 +6,7 @@ class chat extends Component {
     constructor () {
         super()
         this.state = {
-          value : {},
-          bubbles:[],
-          
+          bubbles:[]
         }
       }
 
@@ -101,7 +99,7 @@ class chat extends Component {
       }
       else
       {
-          this.fetchInverval = setInterval( this.fetchLoop, 1000, this.props.match.params.room );
+          this.fetchInverval = setInterval( this.fetchLoop, 1000, this.props.match.params.room, this );
       }
   }
 
@@ -110,7 +108,7 @@ class chat extends Component {
       clearInterval( this.fetchInterval )
   }
 
-  fetchLoop( room )
+  fetchLoop( room, myScope )
   {
       // Abort loop
       if ( !window.location.pathname.startsWith( "/chat/" ) ) return;
@@ -128,7 +126,7 @@ class chat extends Component {
       if ( room == null || room.length > 50 ) return;
 
       // Setup starting value
-      if ( this.lastMessage == null ) this.lastMessage = -1;
+      if ( this.lastMessage == null ) this.lastMessage = 0;
 
       var obj = JSON.stringify({
           "username": localStorage.account,
@@ -136,6 +134,8 @@ class chat extends Component {
           "last": this.lastMessage,
           "room": room
       })
+
+      const loopScope = this
 
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", "/api/fetch", true);
@@ -153,10 +153,20 @@ class chat extends Component {
                   for ( var i = 0; i < response.posts.length; i++ )
                   {
                       const post = response.posts[i]
+
+                      var updateVal = {
+                          "author":post.author,
+                          "content":post.content,
+                          "timestamp":post.born
+                      }
+
+                      myScope.setState({
+                          "bubbles": myScope.state.bubbles.concat(updateVal)
+                      })
                   }
 
                   // Update last message
-                  this.lastMessage = response.last
+                  loopScope.lastMessage = response.last
               }
               else if ( response.status === "fail" )
               {
@@ -165,11 +175,6 @@ class chat extends Component {
           }
       };
       xhttp.send(obj);
-  }
-
-  //Add things dynamically
-  onAddItem() {
-
   }
 
     render() {
@@ -185,18 +190,14 @@ class chat extends Component {
         
         {
                 // Iterates over each element in the blocks array in the state and makes a span
-              this.state.bubbles.map(({id, user, message})=>{
+              this.state.bubbles.map(({author, content, timestamp})=>{
                 return (
                     <div className="chatBubble">
-                      
-                  
                         <div>
-                        <span>{message.toString()}</span>
-                        <span>{user.toString()}</span>
+                        <span>{content.toString()}</span>
+                        <span>{author.toString()}</span>
+                        <span>{timestamp.toString()}</span>
                         </div>
-                  
-                  
-                  
                     </div>
                 )
               })
