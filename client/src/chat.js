@@ -3,6 +3,14 @@ import './chat.css';
 
 class chat extends Component {
 
+    constructor () {
+        super()
+        this.state = {
+          value : {},
+          bubbles:[],
+          
+        }
+      }
 
   sendClicked()
   {
@@ -43,6 +51,11 @@ class chat extends Component {
       }
   }
 
+  //Add things dynamically
+  onAddItem() {
+
+  }
+
     render() {
      return (
        <div className="Chat">
@@ -54,7 +67,24 @@ class chat extends Component {
         
         <div className = "chat_bubbles">
         
-        
+        {
+                // Iterates over each element in the blocks array in the state and makes a span
+              this.state.bubbles.map(({id, user, message})=>{
+                return (
+                    <div className="chatBubble">
+                      
+                  
+                        <div>
+                        <span>{message.toString()}</span>
+                        <span>{user.toString()}</span>
+                        </div>
+                  
+                  
+                  
+                    </div>
+                )
+              })
+            }
         
         
         </div>
