@@ -1,6 +1,6 @@
 .Chat {
     height: 100vh;
-    background:gray;
+    background:url("http://mysite.example.com/mycursor.png");
     position: relative;
     overflow: hidden;
     overflow-y: scroll;
