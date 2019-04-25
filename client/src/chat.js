@@ -193,11 +193,12 @@ class chat extends Component {
               this.state.bubbles.map(({author, content, timestamp})=>{
                 return (
                     <div className="chatBubble">
-                        <div>
+                        
+                        <span>{author.toString()}: </span>
                         <span>{content.toString()}</span>
-                        <span>{author.toString()}</span>
-                        <span>{timestamp.toString()}</span>
-                        </div>
+                       
+                        <span className="time">{timestamp.toString()}</span>
+                        =
                     </div>
                 )
               })
