@@ -4,7 +4,8 @@ module.exports = (app) => {
         if(!req.body
         || !req.body.username
         || !req.body.token
-        || !req.body.content)
+        || !req.body.content
+        || !req.body.room)
         {
             console.log("post: missing field")
             return res.sendStatus(400)
@@ -13,8 +14,9 @@ module.exports = (app) => {
         const username = req.body.username
         const token = req.body.token
         const content = req.body.content
+        const room = req.body.room
 
-        if ( username >= 50 )
+        if ( username.length >= 50 )
         {
             console.log( "post: username too long: " + username )
             return res.sendStatus(400)
@@ -25,6 +27,13 @@ module.exports = (app) => {
             console.log( "post: invalid token: " + token )
             return res.sendStatus(400)
         }
+
+        if ( room.length >= 50 )
+        {
+            console.log( "fetch: room too long: " + room )
+            return res.sendStatus(400)
+        }
+
 
         sqlcon.query( "SELECT token FROM cs252users WHERE username=?;",
         [ username ], function( err, arsql )
@@ -48,10 +57,10 @@ module.exports = (app) => {
             {
                 const rightnow = Date.now() / 1000;
 
-                sqlsec.query( "INSERT INTO cs252posts (content, author, born) VALUES (?, ?, ?);",
-                [ content, username, rightnow ]);
+                sqlsec.query( "INSERT INTO cs252posts (content, author, born, room) VALUES (?, ?, ?, ?);",
+                [ content, username, rightnow, room ]);
 
-                console.log("post: a message was posted by user: " + username )
+                console.log("post: a message was posted by user: " + username + ", to room: " + room )
                 res.json({"status":"okay"})
             }
         });
@@ -61,7 +70,8 @@ module.exports = (app) => {
         if(!req.body
         || !req.body.username
         || !req.body.token
-        || typeof(req.body.last) === 'undefined' )
+        || typeof(req.body.last) === 'undefined'
+        || !req.body.room )
         {
             console.log("fetch: missing field")
             return res.sendStatus(400)
@@ -70,7 +80,7 @@ module.exports = (app) => {
         const username = req.body.username
         const token = req.body.token
 
-        if ( username >= 50 )
+        if ( username.length >= 50 )
         {
             console.log( "fetch: username too long: " + username )
             return res.sendStatus(400)
@@ -79,6 +89,12 @@ module.exports = (app) => {
         if ( token.length != 64 )
         {
             console.log( "fetch: invalid token: " + token )
+            return res.sendStatus(400)
+        }
+
+        if ( room.length >= 50 )
+        {
+            console.log( "fetch: room too long: " + room )
             return res.sendStatus(400)
         }
 
@@ -112,7 +128,7 @@ module.exports = (app) => {
             {
                 const rightnow = Date.now() / 1000;
 
-                sqlsec.query( "SELECT * FROM cs252posts WHERE id>? ORDER BY id ASC;", [last], function( err, rsql )
+                sqlsec.query( "SELECT * FROM cs252posts WHERE id>? AND room=? ORDER BY id ASC;", [last, room], function( err, rsql )
                 {
                     if ( err )
                     {
@@ -144,7 +160,7 @@ module.exports = (app) => {
                     }
                 });
 
-                console.log("fetch: a message was posted by user: " + username )
+                console.log( "fetch: messages fetched by user: " + username + ", from room: " + room )
                 res.json({"status":"okay"})
             }
         });
