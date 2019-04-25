@@ -35,7 +35,13 @@
   
   margin-top: 1%;
   margin-left: 35%;  
-}
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}  
+.button:hover {
+  color: white;
+  }
 
 .button2 {
   background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
@@ -48,7 +54,13 @@
   
   margin-top: 1%;
   margin-left: 6%;  
-}
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}  
+.button2:hover {
+  color: white;
+  }
 
 .usernameForm {
   margin-left: 32%;
