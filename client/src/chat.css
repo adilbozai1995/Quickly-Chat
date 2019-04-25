@@ -9,6 +9,23 @@
   }
 
 
+  .jump_end{
+     position: absolute; 
+     top: 10%;
+     left: 90%;
+     background:green;
+  
+  
+  }  
+
+  .logout_btn{
+    position: relative; 
+     left: 92.5%;
+     background:blue;
+  
+  } 
+
+
 .input_holder{
   position: relative; 
    top: 12.5%;

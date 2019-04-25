@@ -6,12 +6,24 @@ class chat extends Component {
 
   sendClicked(){
 
-    
+
+  }
+
+  jumpEndClicked(){
+
+
+  
+  }
+
+  logoutClicked(){
+
+
   }
     render() {
      return (
        <div className="Chat">
-
+        <button OnClick={() => this.jumpEndClicked()} className = "jump_end">END</button>
+        <button OnClick={() => this.logoutClicked()} className = "logout_btn">logout</button>
         <div className = "input_holder">
         
         <div className = "chat_bubbles">
