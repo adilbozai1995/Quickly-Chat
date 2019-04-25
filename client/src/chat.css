@@ -7,3 +7,46 @@
     overflow-x: scroll;
   
   }
+
+
+.input_holder{
+  position: relative; 
+   top: 12.5%;
+   left: 12.5%;
+   height: 75%;
+   width: 75%;
+   background:green;
+
+
+}
+
+.chat_bubbles{
+    position: relative; 
+    top: 2%;
+    left: 2.5%;
+    height: 75%;
+    width: 95%;
+    background:blue;
+ 
+ 
+ }
+
+ .chat_input{
+    position: absolute; 
+    top: 85%;
+    left: 2.5%;
+    height: 5%;
+    width: 80%;
+    background:red;
+
+ }
+
+ .chat_send{
+    position: absolute; 
+    top: 85%;
+    left: 90%;
+    height: 5%;
+    width: 6%;
+    background:red;
+
+ }
