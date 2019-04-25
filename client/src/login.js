@@ -51,10 +51,11 @@ class login extends Component {
       {
           localStorage.account = "";
           localStorage.token = "";
-          return;
       }
-
-      window.location.replace("/chat/main")
+      else
+      {
+          window.location.replace("/chat/main")
+      }
   }
 
 
