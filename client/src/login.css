@@ -1,0 +1,32 @@
+.loginForm {
+  height: 100vh;
+  background-image: linear-gradient(#00b8e6, #005266);
+  position: relative;
+  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  
+}
+
+.button {
+  background-image: linear-gradient(to bottom,#a0982d 0,#5c5b32 100%);
+  margin-right: 2rem;
+  padding: 0.5% 0.6%;
+  font-size: 180%;
+  line-height: 1.3333333;
+  border-radius: 50%;
+  border-color: black;
+  font-family:'SignPainter';
+  font-weight: bold;
+
+}
+
+.usernameForm {
+
+}
+
